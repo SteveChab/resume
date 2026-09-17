@@ -1,0 +1,249 @@
+/* ==================================================================
+   /resume — the record
+   ==================================================================
+   The same spine as /work: an 11rem gutter on the left carrying the
+   section name, prose at measure beside it.
+
+   This is the one page on the site that gets printed, so the print
+   block at the bottom carries as much weight as the screen rules.
+
+   Tokens, shell, page head, and section label come from css/site.css.
+   ================================================================== */
+
+/* --- the head ------------------------------------------------------ */
+
+.roles {
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .2rem 1.1rem;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  line-height: var(--leading-snug);
+}
+
+/* --- the sections -------------------------------------------------- */
+
+.record__section {
+  padding: var(--space-12) 0;
+  border-top: var(--border-width) solid var(--rule);
+}
+
+.record__label {
+  margin: 0 0 1.2rem;
+  font-size: .72rem;
+}
+
+.record__body > p {
+  margin: 0 0 1.1rem;
+  font-size: 1.06rem;
+  line-height: 1.78;
+}
+
+.record__body > p:last-child { margin-bottom: 0; }
+
+/* --- expertise, as terms and definitions --------------------------- */
+
+.terms {
+  margin: 0;
+  display: grid;
+  gap: .9rem;
+}
+
+.terms dt {
+  font-family: var(--font-slab);
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: var(--leading-snug);
+}
+
+.terms dd {
+  margin: .1rem 0 0;
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+@media (min-width: 700px) {
+  .terms {
+    grid-template-columns: 12rem minmax(0, 1fr);
+    column-gap: 1.6rem;
+    row-gap: 1.1rem;
+  }
+
+  .terms dt { grid-column: 1; }
+  .terms dd { grid-column: 2; margin-top: 0; }
+}
+
+/* --- one employer -------------------------------------------------- */
+
+.job + .job {
+  margin-top: var(--space-12);
+  padding-top: var(--space-8);
+  border-top: var(--border-width) solid var(--rule);
+}
+
+.job__org {
+  margin: 0 0 .2rem;
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  letter-spacing: -.01em;
+}
+
+.job__place {
+  margin: 0 0 1rem;
+  font-size: .78rem;
+  font-weight: 400;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.job__blurb {
+  margin: 0 0 1.6rem;
+  font-size: 1.06rem;
+  line-height: 1.78;
+}
+
+/* --- one role under that employer ---------------------------------- */
+
+.role + .role { margin-top: var(--space-8); }
+
+.role__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .2rem 1rem;
+  margin: 0 0 .7rem;
+}
+
+.role__title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: .92rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  line-height: var(--leading-snug);
+}
+
+/* Dates get scanned rather than read, so they are set as data: mono,
+   full ink, never a muted gray. */
+.role__dates {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: .82rem;
+  line-height: var(--leading-snug);
+}
+
+.role__list {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: .7rem;
+}
+
+.role__list li {
+  font-size: 1.02rem;
+  line-height: 1.7;
+  padding-left: .3rem;
+}
+
+.role__list li::marker { color: var(--link); }
+
+/* --- education ------------------------------------------------------ */
+
+.degrees {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.degrees__what {
+  display: block;
+  font-family: var(--font-slab);
+  font-weight: 700;
+  font-size: 1.02rem;
+  line-height: var(--leading-snug);
+}
+
+.degrees__where {
+  display: block;
+  font-size: 1rem;
+}
+
+/* --- stacked, below the breakpoint --------------------------------- */
+
+@media (max-width: 1139px) {
+  .sheet-head,
+  .record {
+    max-width: 40rem;
+    margin-inline: auto;
+  }
+}
+
+/* --- the gutter, once there is room -------------------------------- */
+
+@media (min-width: 1140px) {
+  .record__section {
+    display: grid;
+    grid-template-columns: 11rem minmax(0, 44rem);
+    column-gap: 2.8rem;
+    align-items: start;
+  }
+
+  .record__label {
+    margin: .45rem 0 0;
+    grid-column: 1;
+  }
+
+  .record__body { grid-column: 2; }
+}
+
+/* --- print ----------------------------------------------------------
+   One column, links resolved to their addresses, and no section split
+   across a page break.
+   ------------------------------------------------------------------ */
+
+@media print {
+  .record__section {
+    display: block;
+    padding: .9rem 0;
+    border-top: 1px solid #999;
+    break-inside: avoid;
+  }
+
+  .record__label {
+    margin: 0 0 .5rem;
+    font-size: 9pt;
+  }
+
+  .job + .job {
+    margin-top: 1rem;
+    padding-top: .8rem;
+  }
+
+  .job,
+  .role { break-inside: avoid; }
+
+  .job__org { font-size: 13pt; }
+  .role__title { font-size: 10pt; }
+
+  .record__body > p,
+  .job__blurb,
+  .role__list li,
+  .terms dd { font-size: 10.5pt; line-height: 1.45; }
+
+  /* A printed link with no address is a dead end. */
+  .record__body a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    word-break: break-all;
+  }
+
+  .record__body a[href^="mailto:"]::after { content: ""; }
+}
