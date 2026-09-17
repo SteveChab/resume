@@ -1,0 +1,7 @@
+# chabassol.com
+# Open to every crawler, search engines and AI alike.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://chabassol.com/sitemap.xml
