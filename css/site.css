@@ -1,11 +1,8 @@
 /* ==================================================================
    The shell
    ==================================================================
-   Two sites load copies of this file. Edit it in web/css/ and run
-   scripts/sync-shared.sh, or the copies drift apart.
-
    Tokens, base elements, and the parts every page carries: skip link,
-   running head, footer, wordmark, focus, motion guard, print. Page
+   running head, nav, footer, focus, motion guard, print. Page
    layout lives in each page's own partial.
 
    Contrast ratios in comments are measured. WCAG 2.2 AA asks 4.5:1
@@ -93,7 +90,7 @@
   --link: var(--accent-600);
   --link-hover: var(--accent-800);
   --focus-ring: var(--accent-600);
-  --selection: #f89;
+  --selection: var(--accent-300);
 
   /* --- type --- */
   --font-slab: 'Roboto Slab', Georgia, 'Times New Roman', serif;
@@ -155,7 +152,7 @@
     --link: var(--accent-400);
     --link-hover: var(--accent-300);
     --focus-ring: var(--accent-400);
-    --selection: #d24;
+    --selection: var(--accent-600);
   }
 }
 
@@ -302,20 +299,6 @@ textarea:focus-visible,
   letter-spacing: .1em;
 }
 
-/* stevechab.com has no nav; the favicon is the home link. It centers
-   rather than sitting on a baseline, because a picture has none to share
-   with the blessing. 32px clears the 24px target floor. */
-
-.masthead__home {
-  display: block;
-  align-self: center;
-  line-height: 0;
-}
-
-.masthead__home img { width: 32px; height: 32px; }
-
-.masthead__home ~ .masthead__baruch { align-self: center; }
-
 .nav {
   display: flex;
   flex-wrap: wrap;
@@ -351,43 +334,6 @@ textarea:focus-visible,
   padding-bottom: 0;
 }
 
-.wordmark {
-  text-align: center;
-  padding: var(--space-6) 0 1.6rem;
-}
-
-.wordmark__mark {
-  display: block;
-  width: 100%;
-  max-width: 900px;
-  min-width: 180px;
-  margin: 0 auto calc(var(--space-6));
-}
-
-/* --- chabstract -----------------------------------------------------
-   The wordmark competes with the h1 on mobile, so make it "chabstract."
-   Show partial wordmark as hero instead: zoom-in, crop, and add bg color. */
-
-.wordmark--crop {
-  background-color: var(--accent-400);
-  margin-bottom: var(--space-8);
-  overflow: hidden;
-}
-
-.wordmark--crop .wordmark__mark {
-  transform: scale(9) translateX(-27%) rotate(-5deg);
-}
-
-@media (min-width: 768px) {
-  main.shell > .wordmark--crop {
-    background-color: transparent;
-    margin-bottom: 0;
-    overflow: visible;
-  }
-
-  main.shell > .wordmark--crop .wordmark__mark { transform: none; }
-}
-
 /* --- narrow screens -------------------------------------------------
    Try to keep nav and the blessing on one line. */
 
@@ -420,43 +366,6 @@ textarea:focus-visible,
   font-size: .72rem;
   letter-spacing: .14em;
   text-transform: uppercase;
-}
-
-.site-footer--center {
-  flex-direction: column;
-  justify-content: center;
-}
-
-/* --- social icons ----------------------------------------------------
-   A centered row of brand marks in place of text links. Each link is a
-   44px square around a 24px mark, over the target floor. */
-
-.social {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-2);
-}
-
-.social__link {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  color: var(--text);
-  transition: color var(--duration-fast) var(--ease-out);
-}
-
-.social__link:hover { color: var(--link-hover); }
-
-.social__icon {
-  display: block;
-  width: 24px;
-  height: 24px;
-  fill: currentColor;
 }
 
 /* ==================================================================
@@ -496,10 +405,9 @@ textarea:focus-visible,
 /* ==================================================================
    Section label
    ==================================================================
-   The small uppercase heading that names a column, a group, or a
-   resume section. Sizes and margins belong to the page that uses it.
-   Both the label and its gloss sit at full ink; a muted gray here
-   measures near 2.5:1 and fails AA.
+   The small uppercase heading that names a section. Sizes and margins
+   belong to the page that uses it. It sits at full ink; a muted gray
+   here measures near 2.5:1 and fails AA.
    ================================================================== */
 
 .label {
@@ -511,265 +419,11 @@ textarea:focus-visible,
   text-align: left;
 }
 
-.label__gloss { font-weight: 400; }
-
-/* ==================================================================
-   The empty slot
-   ==================================================================
-   Placeholder. Every .slot is a hole waiting for a real <img> or
-   <video>, and nothing else in the stylesheet depends on it.
-   ================================================================== */
-
-.slot {
-  display: grid;
-  align-content: center;
-  gap: var(--space-2);
-  padding: var(--space-6);
-  border: var(--border-width-thick) dashed var(--rule);
-  border-radius: var(--radius-sm);
-  aspect-ratio: 16 / 10;
-  text-align: left;
-}
-
-.slot--video { aspect-ratio: 16 / 9; }
-.slot--tall { aspect-ratio: 4 / 5; }
-
-.slot__kind {
-  margin: 0;
-  font-size: .68rem;
-  font-weight: 700;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-}
-
-.slot__note {
-  margin: 0;
-  font-size: .9rem;
-  line-height: var(--leading-snug);
-}
-
-/* ==================================================================
-   Components
-   ==================================================================
-   The square control, the button, the motion gate, and the source
-   field. Shared by the pieces and /design, so they live here rather
-   than in css/piece.css. The frame around them, head and stage and
-   bar, is still the pieces' own and stays in piece.css.
-   ================================================================== */
-
-/* --- the square control --------------------------------------------
-   A square with a rule and a geometric mark. The caption is the
-   accessible name since the glyph can be abstract.
-
-   The fill uses .is-on rather than aria-pressed since the language
-   sometimes toggles (Play becomes Pause), and adding aria can cause
-   the state to be announced twice. */
-
-.control {
-  flex: none;
-  width: 56px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .45rem;
-}
-
-.control__btn {
-  width: 100%;
-  height: 56px;
-  padding: 0;
-  border: var(--border-width-thick) solid var(--text);
-  border-radius: 0;
-  background: transparent;
-  color: var(--text);
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  transition: background-color var(--duration-fast) var(--ease-out),
-              color var(--duration-fast) var(--ease-out);
-}
-
-.control__btn:hover { background: var(--text); color: var(--surface); }
-
-.control__btn.is-on {
-  background: var(--text);
-  color: var(--surface);
-}
-
-.control__mark {
-  display: block;
-  font-family: var(--font-slab);
-  font-size: 1.5rem;
-  line-height: 1;
-  font-weight: 400;
-}
-
-.control__mark--align {
-  text-box: trim-start cap alphabetic;
-}
-
-.control__mark svg { display: block; fill: currentColor; }
-
-/* One word. Anything longer is screen reader text inside the caption,
-   so the accessible name says "Next scene" while the page shows
-   "Scene". */
-
-.control__caption {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--text);
-  text-align: center;
-  white-space: nowrap;
-}
-
-/* One full turn on press. The class is added on click and removed when
-   the turn ends, so a fast press turns every time. */
-
-@keyframes control-turn {
-  from { transform: rotate(0turn); }
-  to   { transform: rotate(1turn); }
-}
-
-.control__mark--turning {
-  animation: control-turn .5s var(--ease-out) 1;
-}
-
-/* --- the motion gate ------------------------------------------------
-   A <dialog> opened with showModal(), so the keyboard stays inside it,
-   the page behind goes inert, and Escape closes it. The rules below
-   only undo what the browser draws around a dialog by default: the
-   border, the shrink-to-fit box, and the centering margins. A modal
-   dialog rides the top layer, so it needs no z-index.
-
-   The layout hangs off [open]. A closed dialog is display: none by the
-   browser's own rules, and a bare .gate { display: grid } would beat
-   that and leave the warning on the screen. */
-
-.gate {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  max-width: none;
-  max-height: none;
-  margin: 0;
-  border: 0;
-  padding: var(--space-4);
-  background: var(--surface);
-  color: var(--text);
-  overflow-y: auto;
-}
-
-.gate[open] {
-  display: grid;
-  place-items: center;
-}
-
-.gate::backdrop { background: rgb(0 0 0 / .7); }
-
-.gate__panel {
-  border: var(--border-width-thick) solid var(--text);
-  padding: 1.6rem;
-  max-width: 52ch;
-  background: var(--surface);
-}
-
-.gate__label {
-  margin: 0 0 .4rem;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--link);
-}
-
-.gate__title {
-  margin: 0 0 .7rem;
-  font-family: var(--font-slab);
-  font-weight: 700;
-  font-size: var(--text-lg);
-  line-height: var(--leading-snug);
-}
-
-.gate__body { margin: 0 0 1.2rem; font-size: .95rem; line-height: 1.6; }
-
-.gate__actions { display: flex; flex-wrap: wrap; gap: .8rem; }
-
-.btn {
-  border: var(--border-width-thick) solid var(--text);
-  background: transparent;
-  color: var(--text);
-  font-family: var(--font-sans);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  padding: .85rem 1.2rem;
-  cursor: pointer;
-}
-
-.btn--solid { background: var(--text); color: var(--surface); }
-.btn:hover { background: var(--text); color: var(--surface); }
-.btn--solid:hover { background: transparent; color: var(--text); }
-
-/* --- the source field ----------------------------------------------
-   The label sits under the box, set like the caption under a square.
-   It still comes first in the source; column-reverse moves it, so a
-   screen reader hears the name before the box. */
-
-.field {
-  display: flex;
-  flex-direction: column-reverse;
-  gap: .45rem;
-  flex: 0 1 22rem;
-}
-
-.field__label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--text);
-  text-align: left;
-}
-
-.field__input {
-  height: 40px;
-  padding: 0 .7rem;
-  border: var(--border-width-thick) solid var(--text);
-  border-radius: 0;
-  background: var(--surface);
-  color: var(--text);
-  font-family: var(--font-sans);
-  font-size: .95rem;
-}
-
-.field__input::placeholder { color: var(--text); opacity: .62; }
-
-/* --- narrow screens -------------------------------------------------
-   Below 600px the captions stack under smaller squares, still over the
-   44px target floor. */
-
-@media (max-width: 599px) {
-  .control { width: 48px; gap: .3rem; }
-  .control__btn { height: 48px; }
-  .control__caption { font-size: 9px; letter-spacing: .1em; }
-
-  .field { flex: 1 1 100%; gap: .3rem; }
-  .field__input { height: 36px; }
-
-  .gate__panel { padding: 1.1rem; }
-  .gate__actions .btn { flex: 1 1 100%; }
-}
-
 /* ==================================================================
    Motion guard
    ==================================================================
-   This site ships strobing and flashing work on purpose. A reduced
-   motion setting stops every animation, including ones declared in a
-   page's own <style> block.
+   A reduced motion setting stops every animation, including ones
+   declared in a page's own <style> block.
    ================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
@@ -802,12 +456,7 @@ textarea:focus-visible,
 
   a { color: #000; }
 
-  /* The running head is chrome; the page's own h1 carries the identity.
-     A form field and a dialog print as nothing at all. */
+  /* The running head is chrome; the page's own h1 carries the identity. */
   .skip-link,
-  .masthead,
-  .slot,
-  .field,
-  .gate,
-  .gate[open] { display: none; }
+  .masthead { display: none; }
 }
