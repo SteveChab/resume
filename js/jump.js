@@ -1,13 +1,5 @@
-/* ====================================================================
-   Jump links
-   ====================================================================
-   A link to an id scrolls the page but leaves the keyboard where it
-   was, so the next Tab starts over from the top of the document.
-
-   This moves the focus to match the scroll. Every jump target carries
-   tabindex="-1" in the markup; the guard below adds it anyway, so a
-   link added later still lands.
-   ==================================================================== */
+// Same-page links scroll without moving focus. This moves the keyboard
+// to the target so the next Tab starts there.
 
 (function () {
   function land(id) {
@@ -26,8 +18,7 @@
     }
   }
 
-  // The browser does the scrolling; this follows on the next frame, so
-  // the scroll is settled before the focus lands.
+  // Wait a frame so the scroll settles before focus lands.
   document.addEventListener('click', function (e) {
     var link = e.target.closest ? e.target.closest('a[href^="#"]') : null;
     if (!link) return;
@@ -36,18 +27,11 @@
     requestAnimationFrame(function () { land(id); });
   });
 
-  // A deep link from another page arrives as a hash on load.
   window.addEventListener('hashchange', function () { land(hashId()); });
   if (location.hash) land(hashId());
 
-  // ── The reel index ─────────────────────────────────────────────────
-  // Marks which slide is showing, so a screen reader hears "current"
-  // on it. Nothing depends on this: with JavaScript off the index
-  // still scrolls the scrollport.
-  //
-  // The mark follows the slide, not the press, because the scroller
-  // also answers a swipe and an arrow key. Reading the scrollport is
-  // the only version that stays true.
+  // Mark the showing slide's index link as current. Watch the scroller,
+  // not clicks: swipes and arrow keys move it too.
 
   function watchIndex(index) {
     var reel = index.closest ? index.closest('.reel') : null;

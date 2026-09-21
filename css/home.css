@@ -1,58 +1,58 @@
-/* ==================================================================
-   The homepage: the head, then the case sheet
-   ==================================================================
-   The notes sit in the head under the intro. Each case runs as one
-   row: a metadata spine on the left, the prose in the middle at
-   measure, the visual on the right. Wide screens get the three
-   columns; every width below 1140px stacks them in DOM order. Columns
-   are sized to the text, not to the shell, so the right edge stays
-   ragged.
-
-   Tokens, shell, page head, and section label come from css/site.css.
-   ================================================================== */
-
-/* --- the notes ----------------------------------------------------- */
-
-.notes {
-  display: grid;
-  gap: var(--space-8);
-  margin: var(--space-8) 0;
+.jump {
+  padding: var(--space-12) 0;
+  border-top: var(--border-width) solid var(--rule);
 }
 
-.notes__label {
+.jump__label {
   margin: 0 0 1.2rem;
   font-size: .72rem;
 }
-
-.notes__list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  gap: .85rem;
-  font-size: 1.02rem;
-  line-height: 1.7;
-}
-
-.notes__list strong { font-family: var(--font-slab); }
-
-/* --- the jump list ------------------------------------------------- */
 
 .jump__list {
   margin: 0;
   padding: 0;
   list-style: none;
   display: grid;
-  gap: .85rem;
-  font-size: 1.02rem;
-  line-height: 1.7;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-6) 2.8rem;
+}
+
+.jump__item {
+  display: grid;
+  grid-template-columns: 1.5rem minmax(0, 1fr);
+  column-gap: .7rem;
+  row-gap: .2rem;
+  align-content: start;
+}
+
+/* Same line-height as the title, so the icon rides its first line. */
+.jump__icon {
+  grid-area: 1 / 1;
+  font-family: 'Material Symbols Outlined';
+  font-size: 1.35rem;
+  line-height: 1.78;
+  font-variant-ligatures: none;
+}
+
+.jump__link {
+  grid-area: 1 / 2;
+  font-family: var(--font-slab);
+  font-size: 1.06rem;
+  line-height: 1.78;
+}
+
+.jump__line {
+  grid-area: 2 / 2;
+  margin: 0;
+  font-size: 1.06rem;
+  line-height: 1.78;
+}
+
+@media (min-width: 700px) {
+  .jump__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 .sheet-head__body:last-child { margin-bottom: 0; }
-
-.sheet-head__aside { margin-top: var(--space-8); }
-
-/* --- the cases ----------------------------------------------------- */
 
 .case {
   padding: var(--space-12) 0;
@@ -89,8 +89,6 @@
 
 .case__body p:last-child { margin-bottom: 0; }
 
-/* --- the visual --------------------------------------------------- */
-
 .case__figure {
   margin: 1.6rem 0 0;
   display: grid;
@@ -98,23 +96,18 @@
 }
 
 .case__figure img,
-.case__figure video,
 .case__figure iframe {
   display: block;
   width: 100%;
   border: var(--border-width) solid var(--rule);
 }
 
-/* An iframe takes its height attribute as a pixel height, the way a
-   video does, so the ratio is set here instead. */
+/* An iframe reads its height attribute as pixels, so the ratio lives here. */
 
 .case__embed {
   aspect-ratio: 16 / 9;
   height: auto;
 }
-
-/* A vertical video at full column width would run taller than the case
-   it sits in, so it is capped to the size of what it records. */
 
 .case__embed--phone {
   aspect-ratio: 9 / 16;
@@ -126,21 +119,6 @@
   font-size: .85rem;
   line-height: var(--leading-snug);
 }
-
-/* --- the reel: a row of screens ------------------------------------
-   A carousel with no script of its own. The strip is a scroll
-   container with snap points; the index under it is ordinary links to
-   slide ids, which scroll the nearest scrollport, and js/jump.js lands
-   the keyboard there.
-
-   The scroller carries tabindex="0" because Safari will not make a
-   scrollable area focusable on its own (WCAG 2.1.1). It takes no
-   scroll-behavior: smooth, which runs on the frame clock and so does
-   nothing in a background tab.
-
-   --frame is the shape every slide is poured into. A shot at another
-   ratio sits matted rather than cropped.
-   ------------------------------------------------------------------ */
 
 .reel {
   --frame: 16 / 9;
@@ -176,10 +154,6 @@
   background: var(--surface-raised);
 }
 
-/* The current slide is marked by rule thickness, not color, so it
-   survives forced colors. js/jump.js sets the attribute; with no
-   script the index still scrolls and says nothing about which. */
-
 .reel__index a[aria-current] {
   text-decoration-thickness: 3px;
 }
@@ -196,35 +170,32 @@
   line-height: var(--leading-snug);
 }
 
-/* --- stacked, below the breakpoint -------------------------------- */
-
 @media (max-width: 1139px) {
   .sheet-head,
+  .jump,
   .cases {
     max-width: 40rem;
     margin-inline: auto;
   }
 }
 
-/* --- three columns, once there is room ----------------------------- */
-
 @media (min-width: 1140px) {
 
-  /* The aside lines up with the case figures: the 11rem gutter, the
-     36rem prose column, and the gap between them. */
-  .sheet-head {
+  /* 11rem gutter + 2.8rem gap + 36rem prose. */
+  .sheet-head { max-width: 49.8rem; }
+
+  /* A full case row: 11rem + 36rem + 30rem and two 2.8rem gaps. */
+  .jump {
+    max-width: 82.6rem;
     display: grid;
-    grid-template-columns: minmax(0, 49.8rem) minmax(0, 30rem);
+    grid-template-columns: 11rem minmax(0, 1fr);
     column-gap: 2.8rem;
     align-items: start;
   }
 
-  .sheet-head__aside { margin-top: .6rem; }
+  .jump__label { margin: .45rem 0 0; }
 
-  .notes {
-    grid-template-columns: minmax(0, 36rem) minmax(0, 30rem);
-    column-gap: 2.8rem;
-  }
+  .jump__list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
   .case {
     display: grid;
@@ -232,9 +203,7 @@
     grid-template-areas:
       "meta title figure"
       "meta body  figure";
-    /* The figure spans both rows. Without a flexible second row a tall
-       figure inflates the title row and drops the body copy halfway
-       down the case; the 1fr row swallows the slack instead. */
+    /* The 1fr row absorbs a tall figure so the body stays under the title. */
     grid-template-rows: auto 1fr;
     column-gap: 2.8rem;
     align-items: start;
@@ -255,13 +224,9 @@
   }
 }
 
-/* --- print --------------------------------------------------------- */
-
 @media print {
   .jump { display: none; }
 
-  /* A reel on paper is one picture; the rest of the run costs a sheet
-     each and says the same thing. */
   .reel__scroller { overflow: visible; }
   .reel__strip { display: block; }
   .reel__slide + .reel__slide,

@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>Steve Chabassol: Design Engineer</title>
-  <meta name="description" content="Steve Chabassol designs and builds accessible, beautiful interfaces in Pittsburgh. Case studies from Dell and Carnegie Mellon, and a resume.">
+  <meta name="description" content="Design engineer Steve Chabassol builds accessible UI and code with AI-augmented development. Work from Dell Technologies and fifteen years at Carnegie Mellon.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://chabassol.com/">
 
@@ -18,13 +18,13 @@
   <meta property="og:site_name" content="Steve Chabassol">
   <meta property="og:url" content="https://chabassol.com/">
   <meta property="og:title" content="Steve Chabassol: Design Engineer">
-  <meta property="og:description" content="Steve Chabassol designs and builds accessible, beautiful interfaces in Pittsburgh. Case studies from Dell and Carnegie Mellon, and a resume.">
+  <meta property="og:description" content="Design engineer Steve Chabassol builds accessible UI and code with AI-augmented development. Work from Dell Technologies and fifteen years at Carnegie Mellon.">
   <meta property="og:image" content="https://chabassol.com/share-card.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="An SC monogram over the name Steve Chabassol and the line: Design engineer. I make the internet pretty.">
+  <meta property="og:image:alt" content="An SC monogram over the name Steve Chabassol and the line: Design engineer, accessible UI and code, AI-augmented development.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image:alt" content="An SC monogram over the name Steve Chabassol and the line: Design engineer. I make the internet pretty.">
+  <meta name="twitter:image:alt" content="An SC monogram over the name Steve Chabassol and the line: Design engineer, accessible UI and code, AI-augmented development.">
 
   <link rel="icon" href="favicon.ico" sizes="32x32">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -32,6 +32,7 @@
 
   <link rel="preload" href="fonts/roboto-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/roboto-slab-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/material-symbols-subset.woff2" as="font" type="font/woff2" crossorigin>
 
   <link rel="stylesheet" href="css/site.css">
   <link rel="stylesheet" href="css/home.css">
@@ -52,27 +53,76 @@
   <main class="shell" id="main" tabindex="-1">
 
     <div class="sheet-head">
-      <div class="sheet-head__main">
-        <h1 class="sheet-head__title">Steve here.</h1>
-        <p class="sheet-head__lede">Design engineer, accessible UI & code, AI-augmented development.</p>
-        <p class="sheet-head__body">Currently a senior software engineer at Dell Technologies building A/B experiments on global storefronts. Previously a front-end dev and web designer at Carnegie Mellon University guiding web brand and accessibility standards. Off hours, I create music, poems, and <a href="https://stevechab.com" rel="nofollow">abstract art animations</a>. My <a href="https://stevechab.band" rel="nofollow">rock band</a> plays pretty riffs and weird rhythms under poetic lyrics.</p>
-      </div>
-
-      <aside class="sheet-head__aside">
-        <nav class="jump" aria-label="Work examples on this page">
-          <ul class="jump__list">
-            <li>Fifteen years of <a href="#cmu">cmu.edu</a></li>
-            <li>Dell's <a href="#xps">XPS relaunch</a>, shipped after embargo</li>
-            <li><a href="#accessibility">Accessibility standards</a> leadership in large orgs</li>
-            <li><a href="#gallery">Accessible image gallery</a> built beyond spec from a JSON feed</li>
-            <li><a href="#experiments">Experimentation on international storefronts</a></li>
-            <li>Co-chair of an <a href="#summit">Experience Design Summit</a></li>
-            <li>Non-profit <a href="#manifest">books and branding assets</a></li>
-            <li><a href="#patent">Patent pending</a>, co-invented at Dell</li>
-          </ul>
-        </nav>
-      </aside>
+      <h1 class="sheet-head__title">Steve here.</h1>
+      <p class="sheet-head__lede">Design engineer, accessible UI & code, AI-augmented development.</p>
+      <p class="sheet-head__body">Senior software engineer at Dell Technologies building A/B experiments on customer and business storefronts. I was lead engineer for the online experience of Dell's embargoed XPS relaunch. XPS made national tech news and sold out in two countries. Before Dell, I spent fifteen years at Carnegie Mellon University, where I designed the templates and brand standards shared by hundreds of university sites and wrote web accessibility guidelines still used today.</p>
     </div>
+
+    <nav class="jump" aria-labelledby="jump-head">
+      <h2 class="label jump__label" id="jump-head">On this page</h2>
+      <ul class="jump__list">
+        <li class="jump__item">
+          <span class="jump__icon" aria-hidden="true">&#xe66a;</span>
+          <a class="jump__link" href="#cmu">Fifteen Years of cmu.edu</a>
+          <p class="jump__line">Fifteen years of homepages for my alma mater, with the front end in my hands.</p>
+        </li>
+        <li class="jump__item">
+          <span class="jump__icon" aria-hidden="true">&#xe1bd;</span>
+          <a class="jump__link" href="#design-system">University Design System</a>
+          <p class="jump__line">The templates, authoring tools, and brand standards behind hundreds of university sites.</p>
+        </li>
+        <li class="jump__item">
+          <span class="jump__icon" aria-hidden="true">&#xf0c5;</span>
+          <a class="jump__link" href="#platform">Why the CMS Had to Change</a>
+          <p class="jump__line">A static publishing model that could not carry the campus, and finalists seen up close.</p>
+        </li>
+        <li class="jump__item">
+          <span class="jump__icon" aria-hidden="true">&#xe8d4;</span>
+          <a class="jump__link" href="#migration">Moving 250 Sites</a>
+          <p class="jump__line">Planning the migration of about 250 aging sites to a new design and authoring experience.</p>
+        </li>
+        <li class="jump__item">
+          <span class="jump__icon" aria-hidden="true">&#xeb9b;</span>
+          <a class="jump__link" href="#xps">The XPS Relaunch</a>
+          <p class="jump__line">Lead engineer for an embargoed global launch that made national tech news.</p>
+        </li>
+        <li class="jump__item">
+          <span class="jump__icon" aria-hidden="true">&#xe92c;</span>
+          <a class="jump__link" href="#accessibility">Accessibility Standards and Practice</a>
+          <p class="jump__line">The standards I wrote for a research university and the rules I adapted for Dell's experiments.</p>
+        </li>
+        <li class="jump__item">
+          <span class="jump__icon" aria-hidden="true">&#xe413;</span>
+          <a class="jump__link" href="#gallery">Accessible Image Gallery</a>
+          <p class="jump__line">A flat agency comp built out into a keyboard-accessible module from a JSON feed.</p>
+        </li>
+        <li class="jump__item">
+          <span class="jump__icon" aria-hidden="true">&#xea4b;</span>
+          <a class="jump__link" href="#experiments">Experiments on International Storefronts</a>
+          <p class="jump__line">A/B variants for Dell's consumer and business storefronts, where a millisecond counts.</p>
+        </li>
+        <li class="jump__item">
+          <span class="jump__icon" aria-hidden="true">&#xf06c;</span>
+          <a class="jump__link" href="#ai-review">The AI Code Review Workspace</a>
+          <p class="jump__line">A struggling code review skill suite reworked into a shared workspace my team uses daily.</p>
+        </li>
+        <li class="jump__item">
+          <span class="jump__icon" aria-hidden="true">&#xf233;</span>
+          <a class="jump__link" href="#summit">Experience Design Summit</a>
+          <p class="jump__line">Co-chair of a global livestreamed event for hundreds of UX and design leaders.</p>
+        </li>
+        <li class="jump__item">
+          <span class="jump__icon" aria-hidden="true">&#xea19;</span>
+          <a class="jump__link" href="#manifest">Books for Manifest Ministries</a>
+          <p class="jump__line">Brand guidelines, books, and a Claude skill for a nonprofit teaching ministry.</p>
+        </li>
+        <li class="jump__item">
+          <span class="jump__icon" aria-hidden="true">&#xe90f;</span>
+          <a class="jump__link" href="#patent">Patent Pending</a>
+          <p class="jump__line">A media file retrieval method and AI-driven UX workflow I co-invented at Dell.</p>
+        </li>
+      </ul>
+    </nav>
 
     <div class="cases">
       <section class="case" id="cmu" tabindex="-1" aria-labelledby="cmu-title">
@@ -82,7 +132,7 @@
 
         <div class="case__body">
           <p>Carnegie Mellon hired me in 2007 as the only web designer on its marketing team. The rest of the marketing team, from developers to videographers, shaped the work with me. The HTML, CSS, presentational JavaScript, and SVG animations came from me, along with accessibility and performance tuning.</p>
-          <p>The last homepage I worked on introduced the wordmark square: CMU's wordmark stacked inside a red square, pinned to the top left corner. My early designs let it weave above and behind page elements as you scrolled. Leadership kept the square and its fixed corner perch but decided to cut the z-index cuteness.</p>
+          <p>The last homepage I worked on introduced the wordmark square: CMU's wordmark stacked inside a red square, pinned to the top-left corner. My early designs let it weave above and behind page elements as you scrolled. Leadership kept the square and its fixed corner perch but decided to cut the z-index cuteness.</p>
           <p>CMU has since redone its homepage. But college, departmental, and admissions sites across the university still display some of my designs and code. A legacy for my alma mater.</p>
         </div>
 
@@ -124,9 +174,45 @@
                   allow="encrypted-media; picture-in-picture; fullscreen"
                   allowfullscreen></iframe>
 
-          <figcaption class="case__caption">A walk through the 2019 redesign, held beside the design it replaced.</figcaption>
+          <figcaption class="case__caption">A walk through the 2019 redesign beside the design it replaced.</figcaption>
         </figure>
       </section>
+
+      <section class="case" id="design-system" tabindex="-1" aria-labelledby="design-system-title">
+        <p class="case__meta"><span class="case__org">Carnegie Mellon University</span> Templates, Authoring, Brand Standards</p>
+
+        <h2 class="case__title" id="design-system-title">University Design System</h2>
+
+        <div class="case__body">
+          <p>Carnegie Mellon staff and faculty have hundreds of websites: colleges, departments, research centers, admissions campaigns, each with its own authors and initiatives. I architected the CMS templates, authoring tools, and brand standards those sites shared.</p>
+          <p>First in Cascade CMS, then in Drupal. Responsive layout and brand-aligned type and color. And accessible.</p>
+          <p>Back then, the term "design system" was just gaining popularity, but it was that: a set of components and rules, governed from one place, adopted across hundreds of sites.</p>
+        </div>
+
+      </section>
+
+      <section class="case" id="platform" tabindex="-1" aria-labelledby="platform-title">
+        <p class="case__meta"><span class="case__org">Carnegie Mellon University</span> Technical Evaluation</p>
+
+        <h2 class="case__title" id="platform-title">Why the CMS Had to Change</h2>
+
+        <div class="case__body">
+          <p>Cascade CMS pushed static files, and we could not serve departments that needed dynamic pages or advanced automation. Marketing and IT evaluated many CMS vendors and landed on two finalists. Another developer from the marketing team and I audited them by hand, and our assessments helped shape the future of CMU's websites.</p>
+        </div>
+
+      </section>
+
+      <section class="case" id="migration" tabindex="-1" aria-labelledby="migration-title">
+        <p class="case__meta"><span class="case__org">Carnegie Mellon University</span> Migration Planning and Adoption</p>
+
+        <h2 class="case__title" id="migration-title">Moving 250 Sites</h2>
+
+        <div class="case__body">
+          <p>About 250 sites outgrew their design. We moved them to a design I created, which required much planning. I worked with full-stack developers to map old fields to new ones to hold the design together and preserve data integrity. Every site had different owners with different deadlines and priorities, so we got to coordinate rolling launches over the course of many months.</p>
+        </div>
+
+      </section>
+
       <section class="case" id="xps" tabindex="-1" aria-labelledby="xps-title">
         <p class="case__meta"><span class="case__org">Dell Technologies</span> Lead Engineer</p>
 
@@ -183,7 +269,7 @@
                   allow="encrypted-media; picture-in-picture; fullscreen"
                   allowfullscreen></iframe>
 
-          <figcaption class="case__caption">The launch page running, on desktop and at mobile width.</figcaption>
+          <figcaption class="case__caption">The launch page on desktop and mobile.</figcaption>
         </figure>
       </section>
 
@@ -209,8 +295,8 @@
         <h2 class="case__title" id="gallery-title">Accessible Image Gallery</h2>
 
         <div class="case__body">
-          <p>Carnegie Mellon hired an agency to redesign the Admission website. The agency designed a handsome gallery module and handed over flat comps: no interaction, no animation, no functionality, no accessibility. I built the rest.</p>
-          <p>I pulled a JSON feed from CMU's Curator account, which gathered photos from X and Instagram, and laid it out with CSS Grid in a custom Twig template. Each image revealed its caption on hover and on focus, so a keyboard user reaches the same content as a mouse user.</p>
+          <p>Carnegie Mellon hired an agency to redesign the Admission website. The agency designed a handsome gallery module and handed over flat comps: no interaction, no animation, no functionality, no accessibility. So I built it.</p>
+          <p>I pulled a JSON feed from CMU's Curator account, which gathered photos from Twitter and Instagram, then laid it out with CSS Grid in a custom Twig template. Each image revealed a caption on hover and focus, so keyboard users reached the same content as mouse users.</p>
         </div>
 
         <figure class="case__figure">
@@ -246,7 +332,7 @@
                   allow="encrypted-media; picture-in-picture; fullscreen"
                   allowfullscreen></iframe>
 
-          <figcaption class="case__caption">The gallery driven from the keyboard, read aloud by VoiceOver.</figcaption>
+          <figcaption class="case__caption">The gallery from the keyboard, read aloud by VoiceOver.</figcaption>
         </figure>
       </section>
       <section class="case" id="experiments" tabindex="-1" aria-labelledby="experiments-title">
@@ -255,9 +341,9 @@
         <h2 class="case__title" id="experiments-title">Experiments on International Storefronts</h2>
 
         <div class="case__body">
-          <p>Dell runs A/B experiments on international storefronts. Dell.com sells to everyday customers. Premier is where companies log in and order computers and servers in bulk, or a single machine for one new employee. I build experiment variants for both.</p>
-          <p>A variant starts with Figma designs or light documentation and the metrics to capture. Then the real research begins, because some important details hide until development. Devs often consult with product teams to clarify requirements and address oversights.</p>
-          <p>The craft is defensive: confirm elements exist, wait for control to load, prefer CSS over JavaScript, trim every millisecond. Performance is everything.</p>
+          <p>Dell runs A/B experiments on international storefronts. Dell.com sells to everyday customers. Premier is where companies log in and order. I build for both.</p>
+          <p>A variant starts with Figma designs or light documentation and a hefty list of metrics to capture. Sometimes important details hide until development, which requires consultations with product teams to clarify requirements and address oversights.</p>
+          <p>Defensive coding rules: confirm elements exist, wait for control to load certain elements or APIs, prefer CSS over JavaScript, trim every millisecond. Performance is everything.</p>
         </div>
 
         <figure class="case__figure">
@@ -266,6 +352,18 @@
           <figcaption class="case__caption">Dell sells in many regions and languages on both storefronts.</figcaption>
         </figure>
       </section>
+      <section class="case" id="ai-review" tabindex="-1" aria-labelledby="ai-review-title">
+        <p class="case__meta"><span class="case__org">Dell Technologies</span> AI-Augmented Development</p>
+
+        <h2 class="case__title" id="ai-review-title">The AI Code Review Workspace</h2>
+
+        <div class="case__body">
+          <p>An engineer on my team built an AI code review skill suite that underperformed. A colleague who knew I excel in AI-augmented dev asked if I could do anything about it.</p>
+          <p>I reworked the suite and added an accessibility review layer. I then moved the whole thing to a shared workspace inside Dell's internal AI tool. What had run as a local skill now runs as a shared tool with better results.</p>
+        </div>
+
+      </section>
+
       <section class="case" id="summit" tabindex="-1" aria-labelledby="summit-title">
         <p class="case__meta"><span class="case__org">Dell Technologies</span> Co-chair</p>
 
@@ -283,13 +381,13 @@
 
         <div class="case__body">
           <p>I am creative director for Manifest Ministries, the nonprofit teaching ministry of Pastor W. Joseph Stump, and I sit on its board. I design books, marketing assets, signage, and the website.</p>
-          <p>I devised brand guidelines, color scheme, and typographic style. I lay each book out in Google Docs, styling the headings and the type by hand. The manuscripts arrive as Word documents, often formatted with little consistency. So I built my own Claude skill that turns a messy Word file into clean Markdown, ready to import into Google Docs. I shoot most of the cover photos myself.</p>
+          <p>I devised the brand guidelines, color scheme, and typographic style. For ease, shareability, and editability, I lay each book out in Google Docs. The manuscripts arrive as Word documents formatted with little consistency. So I built my own Claude skill that turns messy Word docs into clean Markdown files, ready to import into Google Docs. I photographed the two most recent book covers.</p>
         </div>
 
         <figure class="case__figure">
           <img src="images/work/mm-book.jpg" width="1080" height="527" loading="lazy" decoding="async"
                alt="A page from a Manifest Ministries book, photographed open. The chapter title A Faith for Revival set in a display serif over its subtitle, with the opening scripture indented under it.">
-          <figcaption class="case__caption">A chapter opening, set by hand in Google Docs and photographed off the printed page.</figcaption>
+          <figcaption class="case__caption">A chapter opening, set by hand in Google Docs; photo of the printed page.</figcaption>
         </figure>
       </section>
 
@@ -299,8 +397,8 @@
         <h2 class="case__title" id="patent-title">Patent Pending</h2>
 
         <div class="case__body">
-          <p>I keep up with the changing field and ideate with similar engineers. At Dell, many of my ideas have gone to the patent committee; one went to the lawyers. Patent pending for a media file retrieval method and AI-driven UX workflow I co-invented.</p>
-          <p>Anybody who has hunted through a media library knows the problem. Thousands of unorganized files, and the one you need is in there somewhere. This novel technique helps solve the problem.</p>
+          <p>I keep up with changing tech and ideate with like-minded engineers. At Dell, many of my ideas have gone to the patent committee, and one went to the lawyers. Patent pending for a media file retrieval method and AI-driven UX workflow that I co-invented.</p>
+          <p>Anybody who has hunted through a media library knows the problem. Thousands of unorganized files, and the one you need is in there somewhere but impossible to find. This novel technique helps solve that problem.</p>
           <p>I work beside smart people, some inventors. I did not see this as part of my career trajectory, a true blessing.</p>
         </div>
       </section>

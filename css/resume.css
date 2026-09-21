@@ -1,16 +1,3 @@
-/* ==================================================================
-   /resume — the record
-   ==================================================================
-   The same spine as /work: an 11rem gutter on the left carrying the
-   section name, prose at measure beside it.
-
-   This is the one page on the site that gets printed, so the print
-   block at the bottom carries as much weight as the screen rules.
-
-   Tokens, shell, page head, and section label come from css/site.css.
-   ================================================================== */
-
-/* --- the head ------------------------------------------------------ */
 
 .roles {
   margin: 0 0 1rem;
@@ -25,8 +12,6 @@
   text-transform: uppercase;
   line-height: var(--leading-snug);
 }
-
-/* --- the sections -------------------------------------------------- */
 
 .record__section {
   padding: var(--space-12) 0;
@@ -45,8 +30,6 @@
 }
 
 .record__body > p:last-child { margin-bottom: 0; }
-
-/* --- expertise, as terms and definitions --------------------------- */
 
 .terms {
   margin: 0;
@@ -78,8 +61,6 @@
   .terms dd { grid-column: 2; margin-top: 0; }
 }
 
-/* --- one employer -------------------------------------------------- */
-
 .job + .job {
   margin-top: var(--space-12);
   padding-top: var(--space-8);
@@ -107,8 +88,6 @@
   line-height: 1.78;
 }
 
-/* --- one role under that employer ---------------------------------- */
-
 .role + .role { margin-top: var(--space-8); }
 
 .role__head {
@@ -129,8 +108,6 @@
   line-height: var(--leading-snug);
 }
 
-/* Dates get scanned rather than read, so they are set as data: mono,
-   full ink, never a muted gray. */
 .role__dates {
   margin: 0;
   font-family: var(--font-mono);
@@ -153,8 +130,6 @@
 
 .role__list li::marker { color: var(--link); }
 
-/* --- education ------------------------------------------------------ */
-
 .degrees {
   margin: 0;
   padding: 0;
@@ -176,8 +151,6 @@
   font-size: 1rem;
 }
 
-/* --- stacked, below the breakpoint --------------------------------- */
-
 @media (max-width: 1139px) {
   .sheet-head,
   .record {
@@ -185,8 +158,6 @@
     margin-inline: auto;
   }
 }
-
-/* --- the gutter, once there is room -------------------------------- */
 
 @media (min-width: 1140px) {
   .record__section {
@@ -203,11 +174,6 @@
 
   .record__body { grid-column: 2; }
 }
-
-/* --- print ----------------------------------------------------------
-   One column, links resolved to their addresses, and no section split
-   across a page break.
-   ------------------------------------------------------------------ */
 
 @media print {
   .record__section {
@@ -238,7 +204,6 @@
   .role__list li,
   .terms dd { font-size: 10.5pt; line-height: 1.45; }
 
-  /* A printed link with no address is a dead end. */
   .record__body a[href^="http"]::after {
     content: " (" attr(href) ")";
     font-size: 9pt;

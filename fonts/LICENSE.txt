@@ -7,3 +7,12 @@ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2
 These are the variable-weight woff2 builds Google Fonts serves, split into the
 latin and latin-ext subsets and self-hosted so no visitor request reaches a
 third-party server. Each file carries the full 100 to 900 weight axis.
+
+Material Symbols Outlined
+Copyright Google (https://github.com/google/material-design-icons)
+
+Licensed under the Apache License, Version 2.0.
+
+material-symbols-subset.woff2 holds twelve icons, subset by Google Fonts to the
+codepoints the homepage jump grid uses and self-hosted for the same reason as
+the text faces.

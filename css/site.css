@@ -1,24 +1,12 @@
-/* ==================================================================
-   The shell
-   ==================================================================
-   Tokens, base elements, and the parts every page carries: skip link,
-   running head, nav, footer, focus, motion guard, print. Page
-   layout lives in each page's own partial.
+/* block, not swap: a missing icon glyph flashes a tofu box. */
 
-   Contrast ratios in comments are measured. WCAG 2.2 AA asks 4.5:1
-   for body text, 3:1 for large text and non-text UI.
-   ================================================================== */
-
-/* ------------------------------------------------------------------
-   Fonts, self-hosted
-   ------------------------------------------------------------------
-   Variable builds: one file per family per subset carries the whole
-   100 to 900 axis. unicode-range keeps latin-ext unfetched until a
-   page sets a character in it, so an English page takes the two latin
-   files and stops.
-
-   Licence and provenance: web/fonts/LICENSE.txt
-   ------------------------------------------------------------------ */
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(../fonts/material-symbols-subset.woff2) format('woff2');
+}
 
 @font-face {
   font-family: 'Roboto';
@@ -64,25 +52,21 @@
     U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-
 :root {
   color-scheme: light dark;
 
-  /* --- primitives: ink and paper --- */
   --black: #000;
   --white: #fff;
-  --ink-900: #111;          /* body text on light */
-  --paper-50: #fcfbfa;      /* light surface */
-  --ink-050: #f2f0ee;       /* body text on dark */
-  --paper-950: #0a0a0a;     /* dark surface */
+  --ink-900: #111;
+  --paper-50: #fcfbfa;
+  --ink-050: #f2f0ee;
+  --paper-950: #0a0a0a;
 
-  /* --- primitives: the accent ramp, one hue family --- */
-  --accent-300: #f89;       /* 9.23:1 on #000, hover on dark */
-  --accent-400: #f67;       /* 7.42:1 on #000, 6.99:1 on #0a0a0a */
-  --accent-600: #d24;       /* 4.79:1 on #fff, 4.63:1 on #fcfbfa */
-  --accent-800: #b23;       /* 6.20:1 on #fff, hover on light */
+  --accent-300: #f89;
+  --accent-400: #f67;
+  --accent-600: #d24;
+  --accent-800: #b23;
 
-  /* --- semantic: light surface (default) --- */
   --surface: var(--paper-50);
   --surface-raised: var(--white);
   --text: var(--ink-900);
@@ -92,53 +76,31 @@
   --focus-ring: var(--accent-600);
   --selection: var(--accent-300);
 
-  /* --- type --- */
   --font-slab: 'Roboto Slab', Georgia, 'Times New Roman', serif;
   --font-sans: 'Roboto', system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
-  --text-xs:   .75rem;
-  --text-sm:   .875rem;
   --text-base: 1.0625rem;
-  --text-lg:   1.25rem;
   --text-xl:   1.5625rem;
-  --text-2xl:  1.953rem;
-  --text-3xl:  2.441rem;
-  --text-4xl:  3.052rem;
   --leading-tight: 1.15;
   --leading-snug: 1.35;
   --leading-normal: 1.75;
   --measure: 65ch;
 
-  /* --- spacing, 4px base --- */
-  --space-1: .25rem;
   --space-2: .5rem;
-  --space-3: .75rem;
   --space-4: 1rem;
   --space-6: 1.5rem;
   --space-8: 2rem;
   --space-12: 3rem;
-  --space-16: 4rem;
-  --space-24: 6rem;
 
-  /* --- borders and radius --- */
   --border-width: 1px;
   --border-width-thick: 2px;
   --radius-sm: 2px;
 
-  /* --- z-index, no magic numbers --- */
-  --z-base: 0;
-  --z-raised: 10;
-  --z-sticky: 100;
-  --z-header: 1000;
   --z-overlay: 10000;
 
-  /* --- motion --- */
   --duration-fast: .18s;
-  --duration-slow: 1s;
   --ease-out: cubic-bezier(.22, 1, .36, 1);
-  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
 
-  /* --- shell --- */
   --shell-max: 1560px;
   --shell-pad: 2.5rem;
 }
@@ -160,10 +122,6 @@
   :root { --shell-pad: 1.25rem; }
 }
 
-/* ==================================================================
-   Base
-   ================================================================== */
-
 *, *::before, *::after { box-sizing: border-box; }
 
 html {
@@ -184,13 +142,9 @@ body {
 
 ::selection { background: var(--selection); color: var(--ink-900); }
 
-img, svg, video, canvas, iframe { max-width: 100%; vertical-align: middle; }
+img, iframe { max-width: 100%; vertical-align: middle; }
 
-/* The width and height attributes reserve the box before the file
-   lands; height: auto lets it shrink with the column and keep the
-   ratio. A <video> needs it said out loud, or the height attribute is
-   taken as a pixel height and the frame stretches. */
-img, video { height: auto; }
+img { height: auto; }
 
 h1, h2, h3, h4 { font-family: var(--font-slab); font-weight: 700; }
 
@@ -208,24 +162,11 @@ a:hover {
   text-decoration-thickness: 3px;
 }
 
-/* One ring, measured over 3:1 on both surfaces. */
 a:focus-visible,
-button:focus-visible,
-summary:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible,
 [tabindex]:focus-visible {
   outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
-}
-
-@supports not selector(:focus-visible) {
-  a:focus, button:focus, input:focus, select:focus, textarea:focus {
-    outline: 3px solid var(--focus-ring);
-    outline-offset: 3px;
-  }
 }
 
 .sr-only {
@@ -239,10 +180,6 @@ textarea:focus-visible,
   white-space: nowrap;
   border: 0;
 }
-
-/* ==================================================================
-   Skip link — first in tab order on every page
-   ================================================================== */
 
 .skip-link {
   position: absolute;
@@ -260,15 +197,9 @@ textarea:focus-visible,
 
 .skip-link:focus { transform: translateY(0); }
 
-/* Jump targets. js/jump.js moves the keyboard to whatever a same-page
-   link points at. The target is out of the Tab order and only ever
-   focused on purpose, so it draws no ring. */
+/* Jump targets take focus only from jump.js, so they draw no ring. */
 
 [tabindex="-1"]:focus { outline: none; }
-
-/* ==================================================================
-   Shell: running head, footer
-   ================================================================== */
 
 .shell {
   max-width: var(--shell-max);
@@ -277,9 +208,7 @@ textarea:focus-visible,
   padding-right: var(--shell-pad);
 }
 
-/* Nav flush left, ב״ה in the right corner. The auto margin does that,
-   not space-between: narrow screens wrap the blessing onto a line of
-   its own, where space-between would drop it back to the left. */
+/* The auto margin on ב״ה, not space-between, keeps it right when it wraps. */
 
 .masthead {
   display: flex;
@@ -316,9 +245,8 @@ textarea:focus-visible,
   text-decoration: none;
   border-bottom: var(--border-width) solid var(--rule);
   padding-bottom: 2px;
-  /* The box measures 22px, under WCAG 2.2's 24px target floor. The 3px
-     goes on top so the rule under the word stays put: hover and current
-     trade the same 3px between padding and border. */
+  /* Lifts the target to 24px. Hover and current trade 3px between
+     padding and border so the underline holds still. */
   padding-top: 3px;
 }
 
@@ -333,9 +261,6 @@ textarea:focus-visible,
   border-bottom: 3px solid var(--link);
   padding-bottom: 0;
 }
-
-/* --- narrow screens -------------------------------------------------
-   Try to keep nav and the blessing on one line. */
 
 @media (max-width: 767px) {
   .masthead { column-gap: .75rem; }
@@ -368,14 +293,6 @@ textarea:focus-visible,
   text-transform: uppercase;
 }
 
-/* ==================================================================
-   Page head — every page after the homepage
-   ==================================================================
-   Every content page opens the same way: a slab title at the
-   homepage's h1 size, one lede at the homepage's lede size, both flush
-   with the shell's left margin.
-   ================================================================== */
-
 .sheet-head {
   padding-top: var(--space-8);
   padding-bottom: var(--space-4);
@@ -402,14 +319,6 @@ textarea:focus-visible,
   max-width: var(--measure);
 }
 
-/* ==================================================================
-   Section label
-   ==================================================================
-   The small uppercase heading that names a section. Sizes and margins
-   belong to the page that uses it. It sits at full ink; a muted gray
-   here measures near 2.5:1 and fails AA.
-   ================================================================== */
-
 .label {
   font-family: var(--font-sans);
   font-weight: 700;
@@ -418,13 +327,6 @@ textarea:focus-visible,
   color: var(--text);
   text-align: left;
 }
-
-/* ==================================================================
-   Motion guard
-   ==================================================================
-   A reduced motion setting stops every animation, including ones
-   declared in a page's own <style> block.
-   ================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -437,14 +339,7 @@ textarea:focus-visible,
     transition-delay: 0ms !important;
   }
 
-  video, canvas { animation-play-state: paused !important; }
 }
-
-/* ==================================================================
-   Print
-   ==================================================================
-   Every page prints as a document.
-   ================================================================== */
 
 @media print {
   body {
@@ -456,7 +351,6 @@ textarea:focus-visible,
 
   a { color: #000; }
 
-  /* The running head is chrome; the page's own h1 carries the identity. */
   .skip-link,
   .masthead { display: none; }
 }
